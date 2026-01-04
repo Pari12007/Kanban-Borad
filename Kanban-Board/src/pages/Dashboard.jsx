@@ -2,9 +2,13 @@ import List from "../components/List";
 
 function Dashboard (){
     return (
-        <div>
-<List />
+        
+       
+        <div className = "dashboard">
+         <List />
+
         </div>
+       
     )
 }
 

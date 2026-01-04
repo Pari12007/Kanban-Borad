@@ -14,16 +14,21 @@ function App() {
     
     <div className = "App">
     <Navbar />
-     <Sidebar />
-     <Footer /> 
 
+    <div className = "layout">
+      <Sidebar />
+
+      <main className = "main">
      <Routes>
 <Route path="/" element={<Dashboard />}/>
 <Route path="/about" element ={<About />} /> 
-<Route path="/itemDetails" elemet={<ItemDetails/>}/>
+<Route path="/itemDetails/:id" element={<ItemDetails />}/>
 <Route path= "*" element={<NotFound />} /> 
      </Routes>
 
+      </main>
+     
+    </div> <Footer /> 
    </div>
 
   
