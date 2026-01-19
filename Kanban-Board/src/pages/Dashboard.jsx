@@ -1,13 +1,13 @@
 import List from "../components/List";
 import Form from "../components/Form";
 
-function Dashboard (){
+function Dashboard ({listArray, setListArray}) {
     return (
         
        
         <div className = "dashboard">
-            <Form />
-         <List />
+            <Form listArray={listArray} setListArray={setListArray} />
+         <List listArray={listArray} setListArray={setListArray} />
 
         </div>
        

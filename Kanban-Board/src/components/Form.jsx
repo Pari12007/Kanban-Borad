@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function Form() {
+
+function Form({listArray, setListArray}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [assignee, setAssignee] = useState("");
@@ -9,7 +10,30 @@ function Form() {
   const [createdDate, setCreatedDate] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  function handleNewTask(event) {}
+  function handleNewTask(event) {
+    event.preventDefault();
+
+    const newTask = {
+      title,
+      description,
+      assignee,
+      status,
+      priority,
+      createdDate,
+      dueDate,
+    }
+
+    setListArray([...listArray, newTask]);
+
+    // Reset form fields
+    setTitle("");
+    setDescription("");
+    setAssignee("");
+    setStatus("To Do");
+    setPriority("Low");
+    setCreatedDate("");
+    setDueDate(""); 
+  }
 
   return (
     <div className="form-page">
@@ -53,8 +77,14 @@ function Form() {
         {/* //STATUS */}
         <label>
           Status:
-          <select>
-            <option></option>
+          <select
+          name = "status"
+          value = {status}
+          onChange = {(event) => setStatus(event.target.value)}
+          >
+            <option value = "To Do">To do</option>
+            <option value = "In Progress">In progress</option>
+            <option value = "Done">Done</option>
           </select>
         </label>
 
@@ -62,21 +92,37 @@ function Form() {
 
         <label>
           Priority:
-          <select>
-            <option></option>
+          <select
+          name = "priority" 
+          value = {priority}
+          onChange = {(event) => setPriority(event.target.value)}
+          >
+            <option value = "Low">Low</option>
+            <option value = "Medium">Medium</option>
+            <option value = "High">High</option>
           </select>
         </label>
 
         {/* //CREATED DATE */}
         <label>
           Created Date:
-          <input />
+          <input 
+          name = "createdDate"
+          value = {createdDate}
+          onChange = {(event) => setCreatedDate(event.target.value)}
+          placeholder = "dd/mm/yyyy"/>
+          
         </label>
 
         {/* //DUE DATE */}
         <label>
           Due Date:
-          <input />
+          <input 
+          name = "dueDate"
+          value = {dueDate}
+          onChange = {(event) => setDueDate(event.target.value)}
+          placeholder = "dd/mm/yyyy"
+          />
         </label>
       </form>
     </div>
