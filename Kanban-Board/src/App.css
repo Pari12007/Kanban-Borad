@@ -72,19 +72,21 @@
 }
 .main{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-     justify-items: center;
+    justify-items: center;
     border: 3px solid green;
-    width: 60vw;
+    width: 100vw;
     height: 70vh;
 }
 
+.task-container{
+    display: flex;
+    flex-direction: row;
+    border: 3px solid red;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 90vw;
+    height: 70vh;
 
-.dashboard{
-    flex-direction: row;    
-    justify-content: center;
-    width: 30vw;
-    border: 3px solid rgb(173, 28, 28);
-    align-items: center;
-} 
+}

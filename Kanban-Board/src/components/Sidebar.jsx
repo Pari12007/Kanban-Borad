@@ -7,6 +7,10 @@ function Sidebar() {
           <p>Home</p>
         </Link>
 
+<Link to = "/addTask">
+          <p>Add Task</p>
+        </Link>
+
         <Link to = "/about">
            <p>About</p>
          </Link>

@@ -124,6 +124,7 @@ function Form({listArray, setListArray}) {
           placeholder = "dd/mm/yyyy"
           />
         </label>
+        <button>Add Task</button>
       </form>
     </div>
   );

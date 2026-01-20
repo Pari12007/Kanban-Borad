@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import ItemDetails from "./pages/ItemDetails"
 import { Routes, Route } from "react-router-dom"
 import { useState } from 'react';
+import AddTask from './pages/AddTask';
 
 function App() {
     
@@ -73,7 +74,10 @@ const [listArray, setListArray] = useState(listArrays)
     <Navbar />
 
     <div className = "layout">
-      <Sidebar />
+      <div>
+         <Sidebar />
+      </div>
+      
 
       <main className = "main">
      <Routes>
@@ -81,6 +85,7 @@ const [listArray, setListArray] = useState(listArrays)
 <Route path="/about" element ={<About />} /> 
 <Route path="/itemDetails/:id" element={<ItemDetails listArray={listArray}/>}/>
 <Route path= "*" element={<NotFound />} /> 
+<Route path="/addTask" element = {<AddTask listArray={listArray} setListArray={setListArray} /> } />
      </Routes>
 
       </main>
