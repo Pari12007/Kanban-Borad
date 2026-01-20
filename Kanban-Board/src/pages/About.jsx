@@ -1,12 +1,18 @@
 function About (){
     return (
-        <div>
+        <div className = "about-container">
+        <div className="author-container">
+        <div className="pari-info">
            <img/>
-           <img />
            <p>Pari</p> 
-           <a>github link</a> 
+           <a href="https://github.com/Pari12007">Github</a> 
+        </div>
+        <div className="martina-info">
+           <img />
            <p>Martina</p>
-           <a>githiblink</a> 
+           <a href="https://github.com/martinaziza">Github</a> 
+        </div>
+        </div>
            <h2>Kanban Board Project</h2>
            <p>Descriptionnnnnn</p>
     

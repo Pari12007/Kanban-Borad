@@ -1,13 +1,15 @@
+
 function ListItem ({task, handleDelete}){
 
     
-    return (
-        <div>
-
+    return ( 
+    <div>
         <h3>{task.title}</h3> 
-            <button onClick={()=> handleDelete(task.id)}>Delete</button>
     
-            </div>
+        <button>Edit</button>
+            <button onClick={()=> handleDelete(task.id)}>Delete</button>      
+    </div>
+     
     )
         
 }

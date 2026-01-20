@@ -88,5 +88,65 @@
     justify-content: space-around;
     width: 90vw;
     height: 70vh;
+}
 
+button {
+    margin-left: 10px;
+    padding: 2px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    border: 1px black solid;
+    height: 70vh;
+    width: 50vw;
+}
+
+form > button {
+    margin-top: 7px;
+    width: 10vw;
+}
+
+label, input {
+    margin-top: 5px;
+}
+
+.author-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid teal;
+    width: 70vw;
+    height: 20vh;
+}
+
+.about-container{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+    width: 70vw;
+    height: 70vh;
+    border: 1px solid hotpink
+}
+
+.to-do {
+    height: 70vh;
+    
+}
+
+.done{
+    box-shadow: 8px 8px 25px rgb(87, 194, 87);
+    height: 70vh;
+    padding: 0 7px;
+}
+
+.item-details{
+    display: flex;
+    flex-direction: column;
+    width: 86vw;
+    border: 1px solid hotpink;
 }

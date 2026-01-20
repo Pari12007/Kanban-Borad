@@ -9,8 +9,7 @@ src={githubLogo}
 className = "github-logo"/>
 <p><a href="https://github.com/Pari12007/Kanban-Borad" target= "_blank">Github Repository</a></p>
 
-        </div>
-        
+        </div>      
         
     )
 }

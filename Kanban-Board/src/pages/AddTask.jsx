@@ -3,7 +3,7 @@ import Form from "../components/Form";
 function AddTask({listArray, setListArray}){
 
 return (
-    <div className ="task-container">
+    <div className ="form-container">
     <Form listArray={listArray} setListArray={setListArray} />
     </div>
 )

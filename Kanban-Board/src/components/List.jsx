@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom"
 import ListItem from "./ListItem" 
-
+import { useParams } from "react-router-dom"
 
 
 
 function List ({listArray, setListArray}){
-
+const {id} = useParams()
     
     const handleDelete = (id) => {
         setListArray(listArray.filter((task) => task.id !== id))
@@ -13,8 +14,10 @@ function List ({listArray, setListArray}){
     const column = (status) => (
       listArray.filter(task => task.status === status)
       .map(task => (
+        <Link to={`/itemDetails/${task.id}`}>
         <ListItem key={task.id} task={task} handleDelete={handleDelete}
         /> 
+        </Link>
     ))
     )
 
