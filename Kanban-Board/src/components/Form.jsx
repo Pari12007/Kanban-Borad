@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {ToastContainer, toast} from "react-toastify"
 
 
 function Form({listArray, setListArray}) {
@@ -9,6 +11,7 @@ function Form({listArray, setListArray}) {
   const [priority, setPriority] = useState("Low");
   const [createdDate, setCreatedDate] = useState("");
   const [dueDate, setDueDate] = useState("");
+const nav = useNavigate()
 
   function handleNewTask(event) {
     event.preventDefault();
@@ -33,8 +36,15 @@ function Form({listArray, setListArray}) {
     setPriority("Low");
     setCreatedDate("");
     setDueDate(""); 
-  }
+   
+    toast.success("Task added!")
+nav("/")
 
+  }
+  
+  
+
+  
   return (
     <div className="form-page">
       <form onSubmit={handleNewTask}>
@@ -124,7 +134,7 @@ function Form({listArray, setListArray}) {
           placeholder = "dd/mm/yyyy"
           />
         </label>
-        <button>Add Task</button>
+        <button type="submit">Add Task</button>
       </form>
     </div>
   );

@@ -14,10 +14,10 @@ const {id} = useParams()
     const column = (status) => (
       listArray.filter(task => task.status === status)
       .map(task => (
-        <Link to={`/itemDetails/${task.id}`}>
+
         <ListItem key={task.id} task={task} handleDelete={handleDelete}
         /> 
-        </Link>
+        
     ))
     )
 

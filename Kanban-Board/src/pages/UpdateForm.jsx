@@ -1,18 +1,51 @@
 import { useState } from "react"
+import { useNavigate, useParams } from "react-router-dom";
+import {toast} from "react-toastify"
 
-function UpdateForm ({listArray, setListArray}) {
-const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [assignee, setAssignee] = useState("");
-  const [status, setStatus] = useState("To Do");
-  const [priority, setPriority] = useState("Low");
-  const [createdDate, setCreatedDate] = useState("");
-  const [dueDate, setDueDate] = useState("");
 
+function UpdateForm ({ listArray, setListArray}) {
+  const {id} = useParams()
+  const oneTask = listArray.find((task)=> task.id === id)
+
+
+  if (!oneTask) {
+    return <p>Task not found</p>
+  }
+
+  const nav = useNavigate();
+  const [title, setTitle] = useState(oneTask.title);
+  const [description, setDescription] = useState(oneTask.description);
+  const [assignee, setAssignee] = useState(oneTask.assignee);
+  const [status, setStatus] = useState(oneTask.status);
+  const [priority, setPriority] = useState(oneTask.priority);
+  const [createdDate, setCreatedDate] = useState(oneTask.createdDate);
+  const [dueDate, setDueDate] = useState(oneTask.dueDate);
+
+  function handleEditTask (event){
+    event.preventDefault()
+    const updatedTask = {
+      id,
+title, description, assignee, status, priority, createdDate, dueDate
+    }
+
+    const mappedTask = listArray.map ((oneTask)=>{
+if (oneTask.id === id) {
+  return updatedTask
+  } else {
+    return oneTask
+  }
+}) 
+setListArray(mappedTask)
+
+toast.success("Task updated!")
+nav("/")
+
+
+}
 
     return (
         <div className="form-page">
-      <form>
+      <form onSubmit={handleEditTask}>
         {/* TITLE */}
         <label>
           Title:
@@ -99,10 +132,10 @@ const [title, setTitle] = useState("");
           placeholder = "dd/mm/yyyy"
           />
         </label>
-        <button>Edit Task</button>
+        <button type="submit">Edit Task</button>
       </form>
     </div> 
     )
 }
 
-export default updateForm
+export default UpdateForm

@@ -9,6 +9,9 @@ import ItemDetails from "./pages/ItemDetails"
 import { Routes, Route } from "react-router-dom"
 import { useState } from 'react';
 import AddTask from './pages/AddTask';
+import UpdateForm from './pages/UpdateForm';
+import {ToastContainer} from "react-toastify"
+
 
 function App() {
     
@@ -86,7 +89,9 @@ const [listArray, setListArray] = useState(listArrays)
 <Route path="/itemDetails/:id" element={<ItemDetails listArray={listArray}/>}/>
 <Route path= "*" element={<NotFound />} /> 
 <Route path="/addTask" element = {<AddTask listArray={listArray} setListArray={setListArray} /> } />
+<Route path="/updateTask/:id" element = {<UpdateForm listArray={listArray} setListArray={setListArray} /> } />
      </Routes>
+        <ToastContainer/>
 
       </main>
      

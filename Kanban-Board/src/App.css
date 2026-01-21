@@ -139,7 +139,7 @@ label, input {
 }
 
 .done{
-    box-shadow: 8px 8px 25px rgb(87, 194, 87);
+    box-shadow: 15px 15px 20px rgb(160, 228, 155);
     height: 70vh;
     padding: 0 7px;
 }
