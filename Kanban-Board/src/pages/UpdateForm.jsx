@@ -30,7 +30,7 @@ title, description, assignee, status, priority, createdDate, dueDate
 
     const mappedTask = listArray.map ((oneTask)=>{
 if (oneTask.id === id) {
-  return updatedTask
+  return {...oneTask, ...updatedTask}
   } else {
     return oneTask
   }

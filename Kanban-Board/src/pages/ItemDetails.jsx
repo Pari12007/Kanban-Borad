@@ -14,13 +14,13 @@ nav("/")
 
     return (
         <div className="item-details">
-<h2>{list.title}</h2>
-<p>Decscription: {list.description}</p>
-<p>Assignee: {list.assignee}</p>
-<p>Priority: {list.priority}</p>
-<p>Created Date: {list.createdDate}</p>
-<p>Due Date: {list.dueDate}</p>
-<button onClick={handleBack}>Back</button>
+<h2><u>{list.title}</u></h2>
+<p><strong>Decscription:</strong> {list.description}</p>
+<p><strong>Assignee:</strong> {list.assignee}</p>
+<p><strong>Priority:</strong> {list.priority}</p>
+<p><strong>Created Date: </strong> {list.createdDate}</p>
+<p><strong>Due Date: </strong>{list.dueDate}</p>
+<button className="back-button" onClick={handleBack}>Back</button>
 
         </div>
     )

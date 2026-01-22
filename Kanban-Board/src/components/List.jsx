@@ -1,52 +1,95 @@
-import { Link } from "react-router-dom"
-import ListItem from "./ListItem" 
-import { useParams } from "react-router-dom"
+import ListItem from "./ListItem";
 
+import { useParams } from "react-router-dom";
 
+import {
+  horizontalListSortingStrategy,
+  SortableContext,
+} from "@dnd-kit/sortable";
 
-function List ({listArray, setListArray}){
-const {id} = useParams()
-    
-    const handleDelete = (id) => {
-        setListArray(listArray.filter((task) => task.id !== id))
-    }
+function List({ listArray, setListArray }) {
+  const { id } = useParams();
 
-    const column = (status) => (
-      listArray.filter(task => task.status === status)
-      .map(task => (
+  const handleDelete = (id) => {
+    setListArray(listArray.filter((task) => task.id !== id));
+  };
 
-        <ListItem key={task.id} task={task} handleDelete={handleDelete}
-        /> 
-        
-    ))
-    )
+  return (
+    <>
+      <div className="task-container">
+        <div className="to-do">
+          <h2>To Do {listArray.status === "To Do" && "📝"}</h2>
 
-    
-    return (
-      <>
-      <div className = "task-container">
-        <div className ="to-do">
-        <h2>To Do {column("To Do").length >= 0  && "📝"}</h2>
-        {column("To Do")}
+          {(() => {
+            const tasks = listArray.filter((task) => task.status === "To Do");
+
+            return (
+              <SortableContext
+                items={tasks.map((task) => task.id)}
+                strategy={horizontalListSortingStrategy}
+              >
+                {tasks.map((task) => (
+                  <ListItem
+                    key={task.id}
+                    task={task}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              </SortableContext>
+            );
+          })()}
         </div>
 
+        <div className="done">
+          <h2>In Progress {listArray.status === "In Progress" && "⏳"}</h2>
 
-        <div className ="In-Progress">
-        <h2>In Progress {column("In Progress").length >= 0 && "⏳"}</h2>
-        {column("In Progress")}
+          {(() => {
+            const tasks = listArray.filter(
+              (task) => task.status === "In Progress",
+            );
+
+            return (
+              <SortableContext
+                items={tasks.map((task) => task.id)}
+                strategy={horizontalListSortingStrategy}
+              >
+                {tasks.map((task) => (
+                  <ListItem
+                    key={task.id}
+                    task={task}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              </SortableContext>
+            );
+          })()}
         </div>
 
-        
-        <div className ="done">
-        <h2>Done {column("Done").length >= 0 && "✅"}</h2>
-        {column("Done")}
+        <div className="done">
+          <h2>Done {listArray.status === "Done" && "✅"} </h2>
+
+          {(() => {
+            const tasks = listArray.filter((task) => task.status === "Done");
+
+            return (
+              <SortableContext
+                items={tasks.map((task) => task.id)}
+                strategy={horizontalListSortingStrategy}
+              >
+                {tasks.map((task) => (
+                  <ListItem
+                    key={task.id}
+                    task={task}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              </SortableContext>
+            );
+          })()}
         </div>
-        
       </div>
-      </>  
-        
-        
-    )
+    </>
+  );
 }
 
-export default List
+export default List;

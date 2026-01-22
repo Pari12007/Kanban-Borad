@@ -11,6 +11,9 @@ import { useState } from 'react';
 import AddTask from './pages/AddTask';
 import UpdateForm from './pages/UpdateForm';
 import {ToastContainer} from "react-toastify"
+import {closestCorners, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors} from "@dnd-kit/core"
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import { arrayMove } from '@dnd-kit/sortable';
 
 
 function App() {
@@ -69,6 +72,47 @@ function App() {
 ]
   
 const [listArray, setListArray] = useState(listArrays)
+ 
+const sensors = useSensors(
+  useSensor(PointerSensor),
+  useSensor(KeyboardSensor, {coordinateGetter: sortableKeyboardCoordinates})
+)
+// const getTaskPos = id => listArray.findIndex(task => task.id === id)
+
+// const handleDragEnd =(event) => {
+//   const {active, over} = event;
+//   if(!over || active.id === over.id);
+
+//   const originalPos = getTaskPos(active.id)
+//   const newPos = getTaskPos(over.id)
+  
+ 
+
+//   setListArray((items) => { arrayMove (items, originalPos, newPos)
+//   })
+// }
+
+const handleDragEnd = ({ active, over }) => {
+  if (!over) return;
+
+  setListArray(tasks => {
+    const activeIndex = tasks.findIndex(t => t.id === active.id);
+    const overIndex = tasks.findIndex(t => t.id === over.id);
+
+    if (activeIndex === -1 || overIndex === -1) return tasks;
+
+    const updated = [...tasks];
+
+    // 🔑 update status when dropped over another column
+    updated[activeIndex] = {
+      ...updated[activeIndex],
+      status: updated[overIndex].status,
+    };
+
+    return arrayMove(updated, activeIndex, overIndex);
+  });
+};
+
   
   return (
       
@@ -83,6 +127,7 @@ const [listArray, setListArray] = useState(listArrays)
       
 
       <main className = "main">
+        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd} sensors={sensors}>
      <Routes>
 <Route path="/" element={<Dashboard listArray={listArray} setListArray={setListArray} />}/>
 <Route path="/about" element ={<About />} /> 
@@ -91,6 +136,7 @@ const [listArray, setListArray] = useState(listArrays)
 <Route path="/addTask" element = {<AddTask listArray={listArray} setListArray={setListArray} /> } />
 <Route path="/updateTask/:id" element = {<UpdateForm listArray={listArray} setListArray={setListArray} /> } />
      </Routes>
+        </DndContext>
         <ToastContainer/>
 
       </main>

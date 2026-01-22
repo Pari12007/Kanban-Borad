@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {ToastContainer, toast} from "react-toastify"
+import {toast} from "react-toastify"
 
 
 function Form({listArray, setListArray}) {
@@ -17,6 +17,7 @@ const nav = useNavigate()
     event.preventDefault();
 
     const newTask = {
+      id: String(listArray.length+1),
       title,
       description,
       assignee,
@@ -37,12 +38,14 @@ const nav = useNavigate()
     setCreatedDate("");
     setDueDate(""); 
    
-    toast.success("Task added!")
-nav("/")
-
+    
   }
   
-  
+  function notify(){
+    toast.success("Task added!")
+  nav("/")
+
+  }
 
   
   return (
@@ -134,7 +137,7 @@ nav("/")
           placeholder = "dd/mm/yyyy"
           />
         </label>
-        <button type="submit">Add Task</button>
+        <button onClick={notify} >Add Task</button>
       </form>
     </div>
   );

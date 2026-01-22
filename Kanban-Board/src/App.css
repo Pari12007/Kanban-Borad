@@ -73,7 +73,6 @@
 .main{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-items: center;
     border: 3px solid green;
     width: 100vw;
@@ -92,7 +91,11 @@
 
 button {
     margin-left: 10px;
-    padding: 2px;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(47, 161,146);
+
 }
 
 
@@ -139,7 +142,8 @@ label, input {
 }
 
 .done{
-    box-shadow: 15px 15px 20px rgb(160, 228, 155);
+    box-shadow: 15px 15px 20px rgba(60, 122, 61);
+    /* background-color: ; */
     height: 70vh;
     padding: 0 7px;
 }
@@ -149,4 +153,13 @@ label, input {
     flex-direction: column;
     width: 86vw;
     border: 1px solid hotpink;
+}
+
+.back-button {
+    width: 10vw;
+    margin-top: 7px;
+}
+
+.task{
+    margin: 25px 15px;
 }
