@@ -132,7 +132,7 @@ function List({ listArray, setListArray }) {
     <div className="task-container">
       {/* TO DO COLUMN */}
       <div className="to-do" ref={setTodoRef}>
-        <h2>To Do 📝</h2>
+        <h2>To Do {listArray.length >= 0 && "📝"}</h2>
 
         <SortableContext
           items={todoTasks.map((task) => task.id)}
@@ -151,7 +151,7 @@ function List({ listArray, setListArray }) {
 
       {/* IN PROGRESS COLUMN */}
       <div className="in-progress" ref={setProgressRef}>
-        <h2>In Progress ⏳</h2>
+        <h2>In Progress {listArray.length >= 0 && "⏳"}</h2>
 
         <SortableContext
           items={progressTasks.map((task) => task.id)}
@@ -169,7 +169,7 @@ function List({ listArray, setListArray }) {
 
       {/* DONE COLUMN */}
       <div className="done" ref={setDoneRef}>
-        <h2>Done ✅</h2>
+        <h2>Done {listArray.length >= 0 && "✅"}</h2>
 
         <SortableContext
           items={doneTasks.map((task) => task.id)}

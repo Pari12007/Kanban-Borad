@@ -1,7 +1,7 @@
 import NotFoundImg from "../assets/404.jpg"
 function NotFound (){
     return (
-        <div>
+        <div className="not-found-container">
 <img src={NotFoundImg} alt="not found image" className = "NotFound"/>
         </div>
     )
