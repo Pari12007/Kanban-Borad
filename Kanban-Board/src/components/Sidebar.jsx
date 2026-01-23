@@ -1,17 +1,20 @@
 import {Link} from "react-router-dom";
+import aboutIocn from "../assets/icon.jpg"
+
 function Sidebar() {
   return (
     <div className = "sidebar">
 
-        <Link to = "/">
+        <Link to = "/" className="home-link">
           <p>Home</p>
         </Link>
 
-<Link to = "/addTask">
+<Link to = "/addTask" className="add-task-link">
           <p>Add Task</p>
         </Link>
 
-        <Link to = "/about">
+        <Link to = "/about" className="about-link">
+        <img src={aboutIocn} alt="About Icon" className="about-icon"/>
            <p>About</p>
          </Link>
     </div>

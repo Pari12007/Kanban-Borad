@@ -1,6 +1,6 @@
-import kanbanLogo from "../assets/kanban-logo.jpg"
+import kanbanLogo from "../assets/kanban-logo.png"
 
-function Navbar (){
+function Navbar (){ 
     return (
         
         <div className = "navbar">

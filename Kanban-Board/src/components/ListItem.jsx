@@ -9,9 +9,8 @@ function ListItem ({task, handleDelete}){
 const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id:task.id})
 
 const style ={
-transition, transform: CSS.Transform.toString(transform)
-
-
+transition, transform: CSS.Transform.toString(transform),
+cursor: "grab"
 }
     function notify(){
         toast("Task deleted!")
@@ -24,19 +23,30 @@ function handleNav (){
 
     return ( 
         
-        <div className="task" ref={setNodeRef} {...attributes} {...listeners} syle={style}>
+        <div className="task" ref={setNodeRef} style={style} {...listeners} {...attributes}>
 
-        <p onClick={handleNav}>{task.title}</p> 
-        <Link to={`updateTask/${task.id}`}>
+
+        <p onClick={handleNav} className="task-title">{task.title} </p> 
+
+
+        <Link to={`updateTask/${task.id}`} onClick={(e) => e.stopPropagation()}>
             <button>Edit</button>
         </Link>
 
-            <button onClick={()=> {handleDelete(task.id);notify()}}>Delete</button>   
+            <button 
+               type="button"
+               onPointerDown={(e) => e.stopPropagation()}
+               onClick={(e)=> {
+                e.stopPropagation();
+                handleDelete(task.id);
+                notify();
+            }}>Delete</button>   
                
     </div>
      
     )
         
 }
+
 
 export default ListItem;

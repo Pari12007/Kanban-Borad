@@ -9,13 +9,12 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
-    background-color: rgb(125, 227, 255);
-    height: 10%;
+    background-color: rgb(141, 219, 238);
 }
 
 .kanban-logo{
     height: 5%;
-    width: 5%;
+    width: 7%;
 }
 
 .navbar h3{
@@ -31,10 +30,10 @@
     position: fixed;
     bottom: 0;
     gap: 7px;
-    background-color: rgb(125, 227, 255);
+   background-color: rgb(141, 219, 238);
     width: 100%;
     height: 30px;
-    border: 3px solid rgb(159, 93, 5);
+    /* border: 3px solid rgb(159, 93, 5); */
 }
 
 .github-logo{
@@ -47,14 +46,22 @@
 }
 
 .sidebar{
-    background-color: rgb(125, 227, 255);
+    background-color: rgba(181, 147, 226, 1);
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items:center;
     width: 10vw;
     height: 90vh;
+
 }
 
+.home-link , .add-task-link, .about-link {
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    color: black;
+}
 
 .sidebar p {
  padding: 15px;
@@ -67,14 +74,15 @@
 .layout{
     display: flex;
     flex-direction: row;
-    border: 3px solid purple;
+    /* border: 3px solid purple; */
     height: 70vh;
 }
 .main{
     display: flex;
     flex-direction: row;
+   
     justify-items: center;
-    border: 3px solid green;
+    /* border: 3px solid green; */
     width: 100vw;
     height: 70vh;
 }
@@ -82,7 +90,7 @@
 .task-container{
     display: flex;
     flex-direction: row;
-    border: 3px solid red;
+    /* border: 3px solid red; */
     align-items: flex-start;
     justify-content: space-around;
     width: 90vw;
@@ -91,10 +99,11 @@
 
 button {
     margin-left: 10px;
+    margin-top: 7px;
     padding: 6px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(47, 161,146);
+    background-color: rgba(253, 209, 245);
 
 }
 
@@ -122,7 +131,7 @@ label, input {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border: 1px solid teal;
+    /* border: 1px solid teal; */
     width: 70vw;
     height: 20vh;
 }
@@ -133,18 +142,41 @@ label, input {
    align-items: center;
     width: 70vw;
     height: 70vh;
-    border: 1px solid hotpink
+    /* border: 1px solid hotpink */
+}
+
+.task-container h2 {
+
+    text-align: center;
+    margin-top: 10px;
 }
 
 .to-do {
-    height: 70vh;
-    
+    height: 80vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px; 
+    border-left: 5px solid rgba(253, 209, 245);
+    width: 25%;
+    box-shadow: 15px 15px 20px rgb(102, 111, 102);
+}
+
+.in-progress{
+    box-shadow: 15px 15px 20px rgb(102, 111, 102);
+    width: 25%;
+    background-color: white;
+    border-radius: 7px;
+    border-left: 5px solid rgba(253, 209, 245);
+    height: 80vh;
+    padding: 0 7px;
 }
 
 .done{
-    box-shadow: 15px 15px 20px rgba(60, 122, 61);
-    /* background-color: ; */
-    height: 70vh;
+    width: 25%;
+    box-shadow: 15px 15px 20px rgb(102, 111, 102);
+    background-color: white;
+    border-radius: 7px;
+    border-left: 5px solid rgba(253, 209, 245);
+    height: 80vh;
     padding: 0 7px;
 }
 
@@ -162,4 +194,20 @@ label, input {
 
 .task{
     margin: 25px 15px;
+    cursor: pointer;
+    border: 2px solid rgba(181, 147, 226, 1);
+    border-left: 5px solid rgba(181, 147, 226, 1);
+    padding: 10px;
+    border-radius: 7px;
+
 }
+.dashboard{
+     background-color: rgb(141, 219, 238);
+     height: 90vh;
+}
+
+
+/* blue rgba(148, 223, 242) */
+/* pink rgba(253, 209, 245) */
+/* purple rgba(181, 147, 226) */ 
+/* slightly darker i think rgba(151, 165, 238) */

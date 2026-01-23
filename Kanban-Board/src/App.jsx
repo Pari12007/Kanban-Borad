@@ -74,9 +74,13 @@ function App() {
 const [listArray, setListArray] = useState(listArrays)
  
 const sensors = useSensors(
-  useSensor(PointerSensor),
-  useSensor(KeyboardSensor, {coordinateGetter: sortableKeyboardCoordinates})
-)
+  useSensor(PointerSensor, {
+    activationConstraint: {distance: 8},
+  }),
+  useSensor(KeyboardSensor, {
+    coordinateGetter: sortableKeyboardCoordinates,
+  })
+);
 // const getTaskPos = id => listArray.findIndex(task => task.id === id)
 
 // const handleDragEnd =(event) => {
@@ -92,28 +96,88 @@ const sensors = useSensors(
 //   })
 // }
 
-const handleDragEnd = ({ active, over }) => {
+// const handleDragEnd = ({ active, over }) => {
+//   if (!over) return;
+
+//   setListArray(tasks => {
+//     const activeIndex = tasks.findIndex(t => t.id === active.id);
+//     const overIndex = tasks.findIndex(t => t.id === over.id);
+
+//     if (activeIndex === -1 || overIndex === -1) return tasks;
+
+//     const updated = [...tasks];
+
+//     // 🔑 update status when dropped over another column
+//     updated[activeIndex] = {
+//       ...updated[activeIndex],
+//       status: updated[overIndex].status,
+//     };
+
+//     return arrayMove(updated, activeIndex, overIndex);
+//   });
+// };
+
+const COLUMNS = ["To Do", "In Progress", "Done"];
+const isColumnId = (id) => COLUMNS.includes(id);
+
+const handleDragOver = ({ active, over }) => {
   if (!over) return;
 
-  setListArray(tasks => {
-    const activeIndex = tasks.findIndex(t => t.id === active.id);
-    const overIndex = tasks.findIndex(t => t.id === over.id);
+  const activeId = active.id;
+  const overId = over.id;
 
-    if (activeIndex === -1 || overIndex === -1) return tasks;
+  if (activeId === overId) return;
 
+  setListArray((tasks) => {
+    const activeIndex = tasks.findIndex((t) => t.id === activeId);
+    if (activeIndex === -1) return tasks;
+
+    const activeTask = tasks[activeIndex];
+
+    // ✅ Find which column we are hovering
+    let newStatus;
+    if (isColumnId(overId)) {
+      newStatus = overId; // hovering a column (empty space)
+    } else {
+      const overTask = tasks.find((t) => t.id === overId);
+      if (!overTask) return tasks;
+      newStatus = overTask.status; // hovering another task
+    }
+
+    // If same status, no need to move between columns here
+    if (activeTask.status === newStatus) return tasks;
+
+    // ✅ Move task into the new column (status change)
     const updated = [...tasks];
-
-    // 🔑 update status when dropped over another column
-    updated[activeIndex] = {
-      ...updated[activeIndex],
-      status: updated[overIndex].status,
-    };
-
-    return arrayMove(updated, activeIndex, overIndex);
+    updated[activeIndex] = { ...activeTask, status: newStatus };
+    return updated;
   });
 };
 
-  
+const handleDragEnd = ({ active, over }) => {
+  if (!over) return;
+
+  const activeId = active.id;
+  const overId = over.id;
+
+  if (activeId === overId) return;
+
+  setListArray((tasks) => {
+    const activeIndex = tasks.findIndex((t) => t.id === activeId);
+    if (activeIndex === -1) return tasks;
+
+    // ✅ If you drop on a COLUMN (not a task), keep it as last item in that column
+    if (isColumnId(overId)) return tasks;
+
+    // ✅ If you drop on a TASK, reorder by arrayMove
+    const overIndex = tasks.findIndex((t) => t.id === overId);
+    if (overIndex === -1) return tasks;
+
+    return arrayMove(tasks, activeIndex, overIndex);
+  });
+};
+
+
   return (
       
     
@@ -127,7 +191,7 @@ const handleDragEnd = ({ active, over }) => {
       
 
       <main className = "main">
-        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd} sensors={sensors}>
+        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd} sensors={sensors} onDragOver={handleDragOver}>
      <Routes>
 <Route path="/" element={<Dashboard listArray={listArray} setListArray={setListArray} />}/>
 <Route path="/about" element ={<About />} /> 
